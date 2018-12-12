@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".LoginActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="397dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="4dp"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/phonumber"
+        android:layout_width="305dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="252dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/round"
+        android:drawableLeft="@mipmap/call_number"
+        android:hint="Phone Number"
+        android:inputType="number"
+        android:maxLength="10"
+        android:padding="6dp"
+        android:textColor="#244f7a"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <LinearLayout
+        android:id="@+id/edt_otp"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/login"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="37dp">
+
+        <EditText
+            android:id="@+id/otpone"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="#fff"
+            android:gravity="center"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:maxLength="1"
+            android:cursorVisible="false"
+            android:textColor="#fff"
+            android:textSize="22dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/otptwo"
+            android:layout_width="50dp"
+            android:imeOptions="actionNext"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="#fff"
+            android:gravity="center"
+            android:cursorVisible="false"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textColor="#fff"
+            android:textSize="22dp" />
+
+        <EditText
+            android:id="@+id/otpthree"
+            android:layout_width="50dp"
+            android:cursorVisible="false"
+            android:imeOptions="actionNext"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="#fff"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textColor="#fff"
+            android:textSize="22dp" />
+
+        <EditText
+            android:id="@+id/otpfour"
+            android:imeOptions="actionNext"
+            android:layout_width="50dp"
+            android:cursorVisible="false"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="#fff"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textColor="#fff"
+            android:textSize="22dp" />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="178dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/round"
+        android:padding="15dp"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phonumber" />
+
+    <TextView
+        android:id="@+id/singup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:text="Not a member?Sign Up Here."
+        android:textColor="#fff"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login" />
+
+
+</android.support.constraint.ConstraintLayout>

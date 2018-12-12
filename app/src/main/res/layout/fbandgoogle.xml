@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#fff"
+
+        android:elevation="5dp">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_left_arrow" />
+
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="225dp"
+            android:src="@drawable/logolow" />
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <EditText
+        android:id="@+id/add_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/round"
+        android:hint="+91 MobileNumber"
+        android:inputType="number"
+        android:padding="15dp" />
+
+
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cvv_number"
+        android:layout_marginLeft="85dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="85dp"
+        android:background="#464a4c"
+        android:padding="15dp"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="#fff" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="150dp"
+            android:layout_height="1dp"
+            android:layout_marginLeft="10dp"
+            android:background="#000" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="or"
+            android:textColor="#000"
+            android:textSize="20dp" />
+
+        <View
+            android:layout_width="150dp"
+            android:layout_height="1dp"
+            android:background="#000" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Login With"
+        android:textSize="18dp" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/fb"
+            android:layout_width="60dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="70dp"
+            android:src="@drawable/ic_facebook" />
+
+        <TextView
+            android:id="@+id/facebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fb"
+            android:layout_marginLeft="70dp"
+            android:text="Facebook"
+            android:textColor="#000"
+            android:textSize="17dp" />
+
+        <ImageView
+            android:id="@+id/google"
+            android:layout_width="60dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="70dp"
+            android:layout_toRightOf="@id/fb"
+            android:src="@drawable/ic_gmail" />
+
+        <TextView
+            android:id="@+id/googleplus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fb"
+            android:layout_marginLeft="60dp"
+            android:layout_toRightOf="@id/facebook"
+            android:text="Google +"
+            android:textColor="#000"
+            android:textSize="17dp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

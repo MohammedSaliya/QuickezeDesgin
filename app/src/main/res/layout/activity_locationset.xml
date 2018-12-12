@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    tools:context="com.spiderindia.quickezedesgin.LocationsetActivity">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/logo" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20sp"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="20sp"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.FitWindowsFrameLayout
+            android:id="@+id/newsCardView"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:background="@drawable/topbackground">
+
+
+            <ImageView
+                android:id="@+id/img_location"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="130dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:src="@drawable/locationlogo" />
+
+            <TextView
+                android:id="@+id/textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:fontFamily="fountKhmerUIb.ttf"
+                android:gravity="center"
+                android:text="Where Do You Want the Service?"
+                android:textColor="#fff"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_current_location"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="110dp"
+                android:layout_marginRight="25dp"
+                android:background="#fff"
+                android:fontFamily="fountKhmerUIb.ttf"
+                android:padding="13dp"
+                android:text="At My Current Location"
+                android:textAllCaps="false"
+                android:textColor="#2b2727"
+                android:textSize="14dp" />
+
+            <Button
+                android:id="@+id/btn_service_location"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="165dp"
+                android:layout_marginRight="25dp"
+                android:background="#fff"
+                android:fontFamily="fountKhmerUIb.ttf"
+                android:padding="10dp"
+                android:text="Search Service Location"
+                android:textAllCaps="false"
+                android:textColor="#2b2727"
+                android:textSize="14dp" />
+
+        </android.support.v7.widget.FitWindowsFrameLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
