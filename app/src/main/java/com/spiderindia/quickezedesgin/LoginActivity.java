@@ -65,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     } else {
                         phonumber.setVisibility(View.INVISIBLE);
+                        singup.setVisibility(View.INVISIBLE);
                         edt_otp.setVisibility(View.VISIBLE);
                         login.setText("verify");
                         otpsent(phone);
@@ -74,8 +75,10 @@ public class LoginActivity extends AppCompatActivity {
 
                     String otp = otpone.getText().toString() + otptwo.getText().toString() + otpthree.getText().toString()
                             + otpfour.getText().toString();
-
                     verfiyotp(phone, otp);
+
+                    Intent intent = new Intent(getApplicationContext(), LocationsetActivity.class);
+                    startActivity(intent);
                 }
 
 

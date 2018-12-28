@@ -37,7 +37,7 @@
                 android:id="@+id/img_location"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginLeft="130dp"
+                android:layout_marginLeft="150dp"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:src="@drawable/locationlogo" />

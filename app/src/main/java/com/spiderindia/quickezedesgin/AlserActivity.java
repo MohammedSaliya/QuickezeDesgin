@@ -3,15 +3,27 @@ package com.spiderindia.quickezedesgin;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.spiderindia.quickezedesgin.APIClass.ApiClient;
+import com.spiderindia.quickezedesgin.Adapter.AdapterView;
+import com.spiderindia.quickezedesgin.Bean.Service.ServiceId;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AlserActivity extends AppCompatActivity {
 
     ImageView back;
-
-    LinearLayout electrician, plumper, carpenter, pest_control, home_deep_cleaning, sofa_cleaing, ac_service;
+    RecyclerView recyclerview;
+    ServiceId serviceId;
+    AdapterView  adapterView;
 
 
     @Override
@@ -19,22 +31,30 @@ public class AlserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alser);
 
-        electrician = findViewById(R.id.electrician);
 
         back = findViewById(R.id.back);
 
 
-        plumper = findViewById(R.id.plumper);
+        recyclerview = findViewById(R.id.recyclerview);
+        recyclerview.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerview.setLayoutManager(layoutManager);
+        Showdata();
 
-        carpenter = findViewById(R.id.carpenter);
 
-        pest_control = findViewById(R.id.pest_control);
+        recyclerview.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerview, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Intent intent = new Intent(AlserActivity.this, PlumperServiceActivity.class);
+                intent.putExtra("position", position);
+                startActivity(intent);
+            }
 
-        home_deep_cleaning = findViewById(R.id.home_deep_cleaning);
+            @Override
+            public void onLongClick(View view, int position) {
 
-        sofa_cleaing = findViewById(R.id.sofa_cleaing);
-        ac_service = findViewById(R.id.ac_service);
-
+            }
+        }));
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,56 +65,36 @@ public class AlserActivity extends AppCompatActivity {
         });
 
 
-        electrician.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(AlserActivity.this, PlumperServiceActivity.class));
-
-            }
-        });
-        plumper.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(AlserActivity.this, PlumperServiceActivity.class));
-
-            }
-        });
-        carpenter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(AlserActivity.this, PlumperServiceActivity.class));
-
-            }
-        });
-        pest_control.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(AlserActivity.this, PlumperServiceActivity.class));
-
-            }
-        });
-        home_deep_cleaning.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(AlserActivity.this, PlumperServiceActivity.class));
-
-            }
-        });
-        sofa_cleaing.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(AlserActivity.this, PlumperServiceActivity.class));
-
-            }
-        });
-        ac_service.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(AlserActivity.this, PlumperServiceActivity.class));
-
-            }
-        });
-
     }
 
+    private void Showdata() {
+
+        final Call<ServiceId> serviceIdCall = ApiClient
+                .getApiClient()
+                .apiInterface()
+                .getService();
+
+
+        serviceIdCall.enqueue(new Callback<ServiceId>() {
+            @Override
+            public void onResponse(Call<ServiceId> call, Response<ServiceId> response) {
+
+                serviceId = response.body();
+
+                adapterView = new AdapterView(AlserActivity.this, serviceId);
+
+
+                recyclerview.setAdapter(adapterView);
+
+            }
+
+
+            @Override
+            public void onFailure(Call<ServiceId> call, Throwable t) {
+                Toast.makeText(AlserActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
 }
+
