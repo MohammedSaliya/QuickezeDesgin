@@ -1,6 +1,7 @@
 package com.spiderindia.quickezedesgin.APIClass;
 
 import com.spiderindia.quickezedesgin.Bean.OTPSend;
+import com.spiderindia.quickezedesgin.Bean.Recomm.DashBoardModuel;
 import com.spiderindia.quickezedesgin.Bean.Registration;
 import com.spiderindia.quickezedesgin.Bean.Service.ServiceId;
 import com.spiderindia.quickezedesgin.Bean.Verifyotp;
@@ -29,6 +30,12 @@ public interface ApiInterface {
 
     @Headers("Content-Type: application/json")
     @GET("services")
-    Call<ServiceId> getService();
+    Call<DashBoardModuel> getService();
 
+
+    @Headers("Content-Type: application/json")
+    @POST("service_categories")
+    Call<ServiceId> GetAllServicecategories(@Body String post);
 }
+
+

@@ -14,6 +14,9 @@ import com.spiderindia.quickezedesgin.APIClass.ApiClient;
 import com.spiderindia.quickezedesgin.Adapter.AdapterView;
 import com.spiderindia.quickezedesgin.Bean.Service.ServiceId;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,7 +26,7 @@ public class AlserActivity extends AppCompatActivity {
     ImageView back;
     RecyclerView recyclerview;
     ServiceId serviceId;
-    AdapterView  adapterView;
+    AdapterView adapterView;
 
 
     @Override
@@ -31,9 +34,7 @@ public class AlserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alser);
 
-
         back = findViewById(R.id.back);
-
 
         recyclerview = findViewById(R.id.recyclerview);
         recyclerview.setHasFixedSize(true);
@@ -47,6 +48,7 @@ public class AlserActivity extends AppCompatActivity {
             public void onClick(View view, int position) {
                 Intent intent = new Intent(AlserActivity.this, PlumperServiceActivity.class);
                 intent.putExtra("position", position);
+
                 startActivity(intent);
             }
 
@@ -69,10 +71,18 @@ public class AlserActivity extends AppCompatActivity {
 
     private void Showdata() {
 
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("service_id", "3");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
         final Call<ServiceId> serviceIdCall = ApiClient
                 .getApiClient()
                 .apiInterface()
-                .getService();
+                .GetAllServicecategories(jsonObject.toString());
 
 
         serviceIdCall.enqueue(new Callback<ServiceId>() {
@@ -80,6 +90,7 @@ public class AlserActivity extends AppCompatActivity {
             public void onResponse(Call<ServiceId> call, Response<ServiceId> response) {
 
                 serviceId = response.body();
+                Toast.makeText(AlserActivity.this, serviceId.getMessage(), Toast.LENGTH_SHORT).show();
 
                 adapterView = new AdapterView(AlserActivity.this, serviceId);
 

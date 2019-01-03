@@ -33,11 +33,11 @@ public class AdapterView extends RecyclerView.Adapter<AdapterView.GetVIewHolder>
 
     @Override
     public void onBindViewHolder(@NonNull GetVIewHolder getVIewHolder, int i) {
-        getVIewHolder.title_service.setText(serviceId.getData().get(i).getService_name());
+        getVIewHolder.title_service.setText(serviceId.getData().get(i).getServiceCategoryName());
 
         Glide
                 .with(context)
-                .load(serviceId.getData().get(i).getService_image())
+                .load(serviceId.getData().get(i).getServiceCategoryImage())
                 .into(getVIewHolder.image_service);
     }
 

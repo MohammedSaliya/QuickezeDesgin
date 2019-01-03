@@ -27,6 +27,8 @@ public class SignUpActivity extends AppCompatActivity {
     EditText name, phonenumber, email, address;
     RetrofitSignUp retrofitSignUp;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

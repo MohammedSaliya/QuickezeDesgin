@@ -7,60 +7,28 @@ import com.google.gson.annotations.SerializedName;
  * Awesome Pojo Generator
  */
 public class Data {
-    @SerializedName("service_name")
-    @Expose
-    private String service_name;
-    @SerializedName("image_path")
-    @Expose
-    private String image_path;
-    @SerializedName("service_image")
-    @Expose
-    private String service_image;
-    @SerializedName("created_at")
-    @Expose
-    private String created_at;
+
     @SerializedName("id")
     @Expose
     private String id;
+    @SerializedName("service_id")
+    @Expose
+    private String serviceId;
+    @SerializedName("service_category_name")
+    @Expose
+    private String serviceCategoryName;
+    @SerializedName("service_category_image")
+    @Expose
+    private String serviceCategoryImage;
+    @SerializedName("created_at")
+    @Expose
+    private String createdAt;
     @SerializedName("created_by")
     @Expose
-    private String created_by;
+    private String createdBy;
     @SerializedName("status")
     @Expose
     private String status;
-
-
-    public String getService_name() {
-        return service_name;
-    }
-
-    public void setService_name(String service_name) {
-        this.service_name = service_name;
-    }
-
-    public String getImage_path() {
-        return image_path;
-    }
-
-    public void setImage_path(String image_path) {
-        this.image_path = image_path;
-    }
-
-    public String getService_image() {
-        return service_image;
-    }
-
-    public void setService_image(String service_image) {
-        this.service_image = service_image;
-    }
-
-    public String getCreated_at() {
-        return created_at;
-    }
-
-    public void setCreated_at(String created_at) {
-        this.created_at = created_at;
-    }
 
     public String getId() {
         return id;
@@ -70,12 +38,44 @@ public class Data {
         this.id = id;
     }
 
-    public String getCreated_by() {
-        return created_by;
+    public String getServiceId() {
+        return serviceId;
     }
 
-    public void setCreated_by(String created_by) {
-        this.created_by = created_by;
+    public void setServiceId(String serviceId) {
+        this.serviceId = serviceId;
+    }
+
+    public String getServiceCategoryName() {
+        return serviceCategoryName;
+    }
+
+    public void setServiceCategoryName(String serviceCategoryName) {
+        this.serviceCategoryName = serviceCategoryName;
+    }
+
+    public String getServiceCategoryImage() {
+        return serviceCategoryImage;
+    }
+
+    public void setServiceCategoryImage(String serviceCategoryImage) {
+        this.serviceCategoryImage = serviceCategoryImage;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 
     public String getStatus() {
@@ -85,6 +85,7 @@ public class Data {
     public void setStatus(String status) {
         this.status = status;
     }
+
 }
 
 

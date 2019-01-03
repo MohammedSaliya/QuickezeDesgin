@@ -4,14 +4,34 @@ import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.spiderindia.quickezedesgin.APIClass.ApiClient;
+import com.spiderindia.quickezedesgin.Adapter.RecommAdapter;
+import com.spiderindia.quickezedesgin.Bean.Recomm.DashBoardModuel;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RecommendedActivity extends AppCompatActivity {
 
 
-    LinearLayout building_repair, home_cleaning, pro_managment, layout_amc, health_fitness, ring_wedding, key, tax_business;
+    LinearLayout building_repair, home_cleaning;
 
+    RecyclerView recyclerview;
+    DashBoardModuel dashBoardModuel;
+    RecommAdapter recommAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,72 +41,64 @@ public class RecommendedActivity extends AppCompatActivity {
 
         building_repair = findViewById(R.id.building_repair);
         home_cleaning = findViewById(R.id.home_cleaning);
-        pro_managment = findViewById(R.id.pro_managment);
-        layout_amc = findViewById(R.id.layout_amc);
-        health_fitness = findViewById(R.id.health_fitness);
-        ring_wedding = findViewById(R.id.ring_wedding);
-        key = findViewById(R.id.key);
-        tax_business = findViewById(R.id.tax_business);
 
 
-        building_repair.setOnClickListener(new View.OnClickListener() {
+        recyclerview = findViewById(R.id.recyclerview);
+        recyclerview.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerview.setLayoutManager(layoutManager);
+
+
+
+        recyclerview.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerview, new RecyclerTouchListener.ClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(RecommendedActivity.this, AlserActivity.class));
+            public void onClick(View view, int position) {
+                Intent intent = new Intent(RecommendedActivity.this, AlserActivity.class);
+                intent.putExtra("position", position);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
 
             }
-        });
-        home_cleaning.setOnClickListener(new View.OnClickListener() {
+        }));
+        Listdata();
+
+    }
+
+    private void Listdata() {
+
+
+
+        final Call<DashBoardModuel> dashBoardModuelCall = ApiClient
+                .getApiClient()
+                .apiInterface()
+                .getService();
+
+        dashBoardModuelCall.enqueue(new Callback<DashBoardModuel>() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(RecommendedActivity.this, AlserActivity.class));
+            public void onResponse(Call<DashBoardModuel> call, Response<DashBoardModuel> response) {
+                dashBoardModuel = response.body();
+
+                    Toast.makeText(RecommendedActivity.this, response.message(), Toast.LENGTH_SHORT).show();
+                    recommAdapter = new RecommAdapter(RecommendedActivity.this, dashBoardModuel);
+
+
+                    recyclerview.setAdapter(recommAdapter);
+
 
             }
-        });
-        pro_managment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(RecommendedActivity.this, AlserActivity.class));
 
-            }
-        });
-        layout_amc.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(RecommendedActivity.this, AlserActivity.class));
-
-            }
-        });
-        health_fitness.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(RecommendedActivity.this, AlserActivity.class));
-
-            }
-        });
-        ring_wedding.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(RecommendedActivity.this, AlserActivity.class));
-
-            }
-        });
-
-        key.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(RecommendedActivity.this, AlserActivity.class));
-
-            }
-        });
-        tax_business.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(RecommendedActivity.this, AlserActivity.class));
+            public void onFailure(Call<DashBoardModuel> call, Throwable t) {
+                Toast.makeText(RecommendedActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });
 
     }
-}
+    }
+
+
 

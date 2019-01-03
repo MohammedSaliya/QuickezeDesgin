@@ -37,7 +37,7 @@ public class RetrofitSignUp {
                 Registration registration = response.body();
                 assert registration != null;
                 Toast.makeText(context, registration.getMessage(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(context, LocationsetActivity.class);
+                Intent intent = new Intent(context, LoginActivity.class);
                 context.startActivity(intent);
             }
 
