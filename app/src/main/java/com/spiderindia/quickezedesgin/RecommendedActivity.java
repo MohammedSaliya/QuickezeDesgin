@@ -1,24 +1,16 @@
 package com.spiderindia.quickezedesgin;
 
-import android.app.Application;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.spiderindia.quickezedesgin.APIClass.ApiClient;
-import com.spiderindia.quickezedesgin.Adapter.RecommAdapter;
-import com.spiderindia.quickezedesgin.Bean.Recomm.DashBoardModuel;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
+import com.spiderindia.quickezedesgin.Adapter.DashBoardAdapter;
+import com.spiderindia.quickezedesgin.Bean.Dashboard.DashBoardModel;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,11 +19,9 @@ import retrofit2.Response;
 public class RecommendedActivity extends AppCompatActivity {
 
 
-    LinearLayout building_repair, home_cleaning;
-
+    LinearLayout building_repair;
+    DashBoardModel dashBoardModel;
     RecyclerView recyclerview;
-    DashBoardModuel dashBoardModuel;
-    RecommAdapter recommAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,30 +29,13 @@ public class RecommendedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recommended);
 
 
-        building_repair = findViewById(R.id.building_repair);
-        home_cleaning = findViewById(R.id.home_cleaning);
 
 
         recyclerview = findViewById(R.id.recyclerview);
-        recyclerview.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerview.setLayoutManager(layoutManager);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        recyclerview.setLayoutManager(gridLayoutManager);
 
 
-
-        recyclerview.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerview, new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                Intent intent = new Intent(RecommendedActivity.this, AlserActivity.class);
-                intent.putExtra("position", position);
-                startActivity(intent);
-            }
-
-            @Override
-            public void onLongClick(View view, int position) {
-
-            }
-        }));
         Listdata();
 
     }
@@ -70,35 +43,34 @@ public class RecommendedActivity extends AppCompatActivity {
     private void Listdata() {
 
 
-
-        final Call<DashBoardModuel> dashBoardModuelCall = ApiClient
+        final Call<DashBoardModel> dashBoardModuelCall = ApiClient
                 .getApiClient()
                 .apiInterface()
-                .getService();
+                .getServiceDashBoard();
 
-        dashBoardModuelCall.enqueue(new Callback<DashBoardModuel>() {
+        dashBoardModuelCall.enqueue(new Callback<DashBoardModel>() {
             @Override
-            public void onResponse(Call<DashBoardModuel> call, Response<DashBoardModuel> response) {
-                dashBoardModuel = response.body();
+            public void onResponse(Call<DashBoardModel> call, Response<DashBoardModel> response) {
 
-                    Toast.makeText(RecommendedActivity.this, response.message(), Toast.LENGTH_SHORT).show();
-                    recommAdapter = new RecommAdapter(RecommendedActivity.this, dashBoardModuel);
-
-
-                    recyclerview.setAdapter(recommAdapter);
+                dashBoardModel = response.body();
+                Toast.makeText(RecommendedActivity.this, response.message(), Toast.LENGTH_SHORT).show();
+                DashBoardAdapter DashBoardAdapter = new DashBoardAdapter(RecommendedActivity.this, dashBoardModel);
+                recyclerview.setAdapter(DashBoardAdapter);
 
 
             }
 
             @Override
-            public void onFailure(Call<DashBoardModuel> call, Throwable t) {
+            public void onFailure(Call<DashBoardModel> call, Throwable t) {
                 Toast.makeText(RecommendedActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });
 
     }
-    }
+
+
+}
 
 
 

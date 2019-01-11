@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
         singup = findViewById(R.id.singup);
         login = findViewById(R.id.login);
         edt_otp = findViewById(R.id.edt_otp);
@@ -54,9 +55,15 @@ public class LoginActivity extends AppCompatActivity {
 
 
         login.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View view) {
+                String otp = otpone.getText().toString() + otptwo.getText().toString() + otpthree.getText().toString()
+                        + otpfour.getText().toString();
                 String phone = phonumber.getText().toString().trim();
+                String otpotp = otp.toString().trim();
+
 
                 if (login.getText().toString().equalsIgnoreCase("Login")) {
 
@@ -73,12 +80,21 @@ public class LoginActivity extends AppCompatActivity {
 
                 } else if (login.getText().toString().equalsIgnoreCase("verify")) {
 
-                    String otp = otpone.getText().toString() + otptwo.getText().toString() + otpthree.getText().toString()
-                            + otpfour.getText().toString();
-                    verfiyotp(phone, otp);
+                    String oneotp = otpone.getText().toString().trim();
+                    String twotp = otptwo.getText().toString().trim();
+                    String threeotp = otpthree.getText().toString().trim();
+                    String fourotp = otpfour.getText().toString().trim();
 
-                    Intent intent = new Intent(getApplicationContext(), LocationsetActivity.class);
-                    startActivity(intent);
+                    if (TextUtils.isEmpty(oneotp) || (TextUtils.isEmpty(twotp)) || TextUtils.isEmpty(threeotp) || (TextUtils.isEmpty(fourotp))) {
+                        otpfour.setError("Plz Enter Your Vaild  OTP");
+                        otpfour.requestFocus();
+                    } else if (otp != null) {
+
+                        verfiyotp(phone, otp);
+
+                        Intent intent = new Intent(getApplicationContext(), LocationsetActivity.class);
+                        startActivity(intent);
+                    }
                 }
 
 
@@ -174,6 +190,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 }
+
 
 
 

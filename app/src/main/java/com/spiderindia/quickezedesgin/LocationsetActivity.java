@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
 
+
 public class LocationsetActivity extends AppCompatActivity {
 
     Button btn_current_location, btn_service_location;

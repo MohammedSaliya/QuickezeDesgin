@@ -1,26 +1,31 @@
-package com.spiderindia.quickezedesgin.Bean.Recomm;
+package com.spiderindia.quickezedesgin.Bean.Dashboard;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Awesome Pojo Generator
  * */
-public class Data{
+public class DashBoardModelSub{
   @SerializedName("service_name")
   @Expose
   private String service_name;
+
   @SerializedName("image_path")
   @Expose
   private String image_path;
+
   @SerializedName("service_image")
   @Expose
   private String service_image;
+
   @SerializedName("created_at")
   @Expose
   private String created_at;
+
   @SerializedName("id")
   @Expose
   private Integer id;
+
   @SerializedName("created_by")
   @Expose
   private Integer created_by;
@@ -54,7 +59,7 @@ public class Data{
   public void setId(Integer id){
    this.id=id;
   }
-  public Integer getId(){
+  public int getId(){
    return id;
   }
   public void setCreated_by(Integer created_by){

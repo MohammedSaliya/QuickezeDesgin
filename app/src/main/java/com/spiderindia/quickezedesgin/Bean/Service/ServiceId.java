@@ -1,7 +1,5 @@
 package com.spiderindia.quickezedesgin.Bean.Service;
 
-import android.support.v7.widget.RecyclerView;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -19,9 +17,9 @@ public class ServiceId  {
     private String message;
     @SerializedName("data")
     @Expose
-    private List<Data> data = null;
+    private List<ServiceData> data = null;
 
-    public ServiceId(Boolean result, String message, List<Data> data) {
+    public ServiceId(Boolean result, String message, List<ServiceData> data) {
         this.result = result;
         this.message = message;
         this.data = data;
@@ -43,11 +41,11 @@ public class ServiceId  {
         this.message = message;
     }
 
-    public List<Data> getData() {
+    public List<ServiceData> getData() {
         return data;
     }
 
-    public void setData(List<Data> data) {
+    public void setData(List<ServiceData> data) {
         this.data = data;
     }
 }

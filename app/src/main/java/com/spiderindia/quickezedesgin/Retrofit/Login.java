@@ -58,6 +58,7 @@ public class Login {
             @Override
             public void onResponse(Call<Verifyotp> call, Response<Verifyotp> response) {
                 Verifyotp verifyotp = response.body();
+                assert verifyotp != null;
                 Toast.makeText(context, verifyotp.getMessage(), Toast.LENGTH_SHORT).show();
             }
 
